@@ -1,23 +1,21 @@
 //task last
 import Foundation
 
-func upString (_ myString: String) -> String{
-	return myString.uppercased()
-}
 
-func loString (_ myString: String) -> String{
-	return myString
-}
-
-func check (_ chString: String){
+func checker (_ chString: String) -> ((String) -> String) {
+  func cupser(name: String) -> (String) {
+    return "Cups: \(name.uppercased())"
+  }
+	func lowString(name: String) -> (String) {
+    return "\(name)"
+  }
 	if chString.contains("!"){
-		print ("String will be uppercased:")
-		print (upString(chString))
-	} else {
-		print ("I don't change:")
-		print (loString(chString))
+		return cupser
 	}
+	return lowString
+  
 }
+let str = "String"
+let foo = checker(str)
+print(foo(str))
 
-var mystr = "It's line!"
-check (mystr)

@@ -7,4 +7,4 @@ print(arr.sorted( by: { s1, s2 in String(s1.characters.reversed()) < String(s2.c
 //task 2
 let arr = ["12", "34", "-76", "0", "5"]
 let farray = arr.filter {!$0.contains("-")}
-print(farray.map{Int($0)!})
+print(farray.flatMap{Int($0)!})

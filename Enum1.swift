@@ -7,10 +7,27 @@ enum Days: Int {
 	func numberOfDay() -> Int {
 		return self.rawValue
 	}
-	//func getByNum()->String{} как сюда число запихать (куда)???
+	func stringValue()->String{
+		switch self {
+			case .monday:
+				return "monday"
+			case .tuesday:
+				return "tuesday"
+			case .wednesday:
+				return "wednesday"
+			case .thursday:
+				return "thursday"
+			case .friday:
+				return "friday"
+			case .saturday:
+				return "saturday"
+			case .sunday:
+				return "sunday"
+		}
+	}
 }
 print(Days.monday.numberOfDay())
-print(Days(rawValue: 7)!)
+print(Days.sunday.stringValue())
 
 //task 2
 enum NetworkType {
@@ -133,7 +150,8 @@ struct Point {
     }
 }
 	struct Vector {
-	var end: Point //begin(0,0)
+	var begin: Point
+	var end: Point 
 	mutating func thisPlusOneOther(by extra: Vector) {
         end.x += extra.end.x
 		end.y += extra.end.y
@@ -143,6 +161,8 @@ struct Point {
 		end.y -= extra.end.y
     }
 	mutating func rotation(by angle: Float){
+		begin.x = begin.x * cos(angle) - begin.y * sin(angle)
+		begin.y = begin.x * sin(angle) + begin.y * cos(angle)
 		end.x = end.x * cos(angle) - end.y * sin(angle)
 		end.y = end.x * sin(angle) + end.y * cos(angle)
 	}	

@@ -92,3 +92,27 @@ stg.getBetter()
 //task 4
 
 //task 5
+struct Point { 
+    var x: Float
+    var y: Float
+
+    init(x: Float, y: Float) {
+        self.x = x
+        self.y = y
+    }
+}
+
+struct Circle{
+	var center: Point
+	var square: Double
+	var radius: Double {
+        get {
+            return pow((square / .pi), 0.5)
+        }
+        set(newRadius) {
+			radius = newRadius
+			square = .pi*pow(radius, 2)
+        }
+    }
+}
+//task6

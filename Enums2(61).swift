@@ -5,12 +5,11 @@ import Foundation
 class Wallet{
 	var balance: Double
 	var state: String
-	static let version: Double
+	static let version = 2.1
 	
-	init(balance: Double, state: String, version: Double){
+	init(balance: Double, state: String){
 		self.balance = balance
 		self.state = state
-		self.version = version
 	}
 	
 	func transaction(by money: Double){
@@ -28,11 +27,20 @@ class Wallet{
 import Foundation
 
 class Vehicle{
-	var currentSpeed = 0.0
-	let maxSpeed = 220.0
-	let weight = 1000.0
-	let model = "Best"
-	var mileage = 0.0
+	var currentSpeed: Double
+	let maxSpeed: Double
+	let weight: Double
+	let model: String
+	var mileage: Double
+	
+	init(currentSpeed: Double, maxSpeed:Double, weight: Double, model:String, mileage: Double){
+		self.currentSpeed = currentSpeed
+		self.maxSpeed = maxSpeed
+		self.weight = weight
+		self.model = model
+		self.mileage = mileage
+	}
+	
 	func blowOut() -> Double{
 		return weight * 0.001 * mileage
 	}
@@ -52,7 +60,7 @@ class MotorCycle: Vehicle{
 }
 class ElectroCar: Car{
 	override func blowOut() -> Double {
-        return 0.
+        return 0.0
     }
 	override func signal(){}
 }

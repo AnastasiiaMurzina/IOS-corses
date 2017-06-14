@@ -84,10 +84,8 @@ class StudentGroup{
 		self.group.append(st)
 	}
 	func delete(_ st: Student) {
-		for (i,stud) in self.group.enumerated() {
-			if (stud === st) {
-        		self.group.remove(at: i)
-    		}
+		if let index = self.group.index(where:  { $0 === st }){
+			self.group.remove(at: index)
 		}
 	}
 	func getBetter(){

@@ -5,7 +5,7 @@ import Foundation
 class Wallet{
 	var balance: Double
 	var state: String
-	let version: Double
+	static let version: Double
 	
 	init(balance: Double, state: String, version: Double){
 		self.balance = balance

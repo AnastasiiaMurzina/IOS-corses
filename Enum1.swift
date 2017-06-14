@@ -6,7 +6,8 @@ enum Days: Int {
 	
 	func numberOfDay() -> Int {
 		return self.rawValue
-	}	
+	}
+	//func getByNum()->String{} как сюда число запихать (куда)???
 }
 print(Days.monday.numberOfDay())
 print(Days(rawValue: 7)!)
@@ -87,3 +88,7 @@ stg.app(stud1)
 stg.app(stud2)
 print(stg.avGroup())
 stg.getBetter()
+
+//task 4
+
+//task 5

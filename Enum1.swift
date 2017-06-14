@@ -22,12 +22,12 @@ enum NetworkType {
 	case None
 	 func simpleDescription() -> String {
         switch self {
-        case .wifi(name: _ ):
-            return "wifi - name"
-		case .g3(distance: _ ):
-			return "3g - distance"
-		case .g4(distance: _ , code: _ ):
-			return "4g - distance, code"
+        case .wifi(let name):
+            return "wifi - \(name)"
+		case .g3(let distance):
+			return "3g - \(distance)"
+		case .g4(let distance, let code):
+			return "4g - \(distance),\(code)"
 		default:
 			return "none - none"
         }
@@ -69,7 +69,7 @@ class StudentGroup{
     self.group = self.group.filter() { $0 !== st }
 	}
 	func getBetter(){
-		self.group.sort( by: { s1, s2 in s1.average > s2.average} )
+		self.group.sort( by: { $0.average > $1.average} )
 		print("The best students are \(self.group[0].surname), \(self.group[1].surname), \(self.group[2].surname)")
 	}	
 }

@@ -91,6 +91,13 @@ stg.getBetter()
 
 //task 4
 
+/*Классы имеют дополнительные возможности, которые не имеют структуры:
+
+Наследование позволяет одному классу наследовать характеристики другого.
+Тип casting позволяет вам проверять и интерпретировать тип экземпляра класса во время выполнения.
+Deinitializers позволяют экземпляру класса освобождать все ресурсы, которые он назначил.
+Счетчик ссылок допускает более одной ссылки на экземпляр класса.*/
+
 //task 5
 struct Point { 
     var x: Float
@@ -116,3 +123,28 @@ struct Circle{
     }
 }
 //task6
+struct Point { 
+    var x: Float
+    var y: Float
+
+    init(x: Float, y: Float) {
+        self.x = x
+        self.y = y
+    }
+}
+	struct Vector {
+	var end: Point //begin(0,0)
+	mutating func thisPlusOneOther(by extra: Vector) {
+        end.x += extra.end.x
+		end.y += extra.end.y
+    }
+	mutating func thisMinusOneOther(by extra: Vector) {
+        end.x -= extra.end.x
+		end.y -= extra.end.y
+    }
+	mutating func rotation(by angle: Float){
+		end.x = end.x * cos(angle) - end.y * sin(angle)
+		end.y = end.x * sin(angle) + end.y * cos(angle)
+	}	
+	
+}

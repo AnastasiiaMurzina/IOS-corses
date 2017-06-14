@@ -66,7 +66,11 @@ class StudentGroup{
 		self.group.append(st)
 	}
 	func delete(_ st: Student) {
-    self.group = self.group.filter() { $0 !== st }
+		for (i,stud) in self.group.enumerated() {
+			if (stud === st) {
+        		self.group.remove(at: i)
+    		}
+		}
 	}
 	func getBetter(){
 		self.group.sort( by: { $0.average > $1.average} )

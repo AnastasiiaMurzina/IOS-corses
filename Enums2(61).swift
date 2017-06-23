@@ -2,29 +2,40 @@
 
 import Foundation
 
+enum states : String{
+		case blocked, enable, disable
+	}
+
 class Wallet{
 	var balance: Double
-	var state: String
+	var state: states
 	static let version = 2.1
-	
-	init(balance: Double, state: String){
+	init(balance: Double, state: states){
 		self.balance = balance
 		self.state = state
 	}
 	
 	func transaction(by money: Double){
-		balance += money
+		if balance + money>0{
+			balance += money
+		} else {
+			print("There isn't enough money")
+		}
 	}
 	func block(wal: Wallet){
-		wal.state = "blocked"
+		wal.state = states.blocked
 	}
 	func unblock(wal: Wallet){
-		wal.state = "enable"
+		wal.state = states.enable
 	}
 }
 
 //task2
 import Foundation
+
+enum types : String{
+		case chopper, sport, scooter, russianShit
+	}
 
 class Vehicle{
 	var currentSpeed: Double
@@ -50,12 +61,16 @@ class Car: Vehicle{
 	let color = "black"
 	override func signal(){}
 }
-class MotorCycle: Vehicle{
-	let type = "sport"
-	override func signal(){}	
-	
-	 override func blowOut() -> Double {
-			 return weight * (type == "russianShit" ?  0.003 : 0.001) * mileage
+class MotorCycle {
+	let type: types
+	let mainProp: Vehicle
+	init(mainProp: Vehicle,type: types){
+		self.mainProp = mainProp
+		self.type = type
+	}
+	func signal(){}	
+	 func blowOut() -> Double {
+			 return mainProp.weight * (type == types.russianShit ?  0.003 : 0.001) * mainProp.mileage
 		 }
 }
 class ElectroCar: Car{

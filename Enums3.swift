@@ -1,7 +1,7 @@
 import Foundation
 
 class CreditCard{
-	let owner: Person?
+	unowned let owner: Person
 	var balance: Double
 	
 	
@@ -10,7 +10,12 @@ class CreditCard{
 		self.owner = owner
 	}
 	func changeMoney(by money: Double){
-		balance += money
+		if (balance + money>=0){
+			balance += money	
+		} else {
+			print("There isn't enough money")
+		}
+		
 	}
 	
 }
@@ -26,4 +31,5 @@ class Person{
 	func app(card: CreditCard){
 		cardsArr.append(card)
 	}
+	deinit{}
 }

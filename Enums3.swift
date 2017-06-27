@@ -1,5 +1,9 @@
 import Foundation
 
+enum CreditCardError: Error {
+    case insufficientFunds(coinsNeeded: Double)
+}
+
 class CreditCard{
 	unowned let owner: Person
 	var balance: Double
@@ -9,13 +13,10 @@ class CreditCard{
 		self.balance = balance
 		self.owner = owner
 	}
-	func changeMoney(by money: Double){
-		if (balance + money>=0){
-			balance += money	
-		} else {
-			print("There isn't enough money")
-		}
-		
+	func withdraw(money: Double) throws {
+				guard self.balance >= money else {
+					throw CreditCardError.insufficientFunds(coinsNeeded: money - self.balance)
+				}
 	}
 	
 }
@@ -33,8 +34,6 @@ class Person{
 	}
 	deinit{}
 }
-
-//task 2 - don't understand at all
 //task 3
 class Book {
 	var title = ""
@@ -60,17 +59,6 @@ class FashionMagazine: Magazine {
 	init(title: String, author: String, year: Int, article: String, total: Double) {
 		super.init (title: title, author: author, year: year, article: article)
 		self.total = total
-	}
-}
-
-extension FashionMagazine {
-	func info() {
-		print(self.author, self.title, self.year)
-	}
-}
-extension Magazine {
-	func info() {
-		print(self.author, self.title, self.year)
 	}
 }
 extension Book {
@@ -112,9 +100,7 @@ class Point {
 
 extension Point{
 	var average: Point{
-		get {
 			return Point(x: -self.x, y: -self.y)
-		}
 	}
 }
 

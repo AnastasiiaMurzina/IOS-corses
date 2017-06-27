@@ -44,6 +44,46 @@ class Triangle: Areable {
 
 //task 2
 
-//task 3
+protocol ErrandBoy {
+	func gotoChalk()
+}
 
-//coming soon *possible*
+class Professor {
+	let name: String
+	init(name: String) {
+		self.name = name
+	}
+	var delegate: ErrandBoy?
+}
+
+class Struden: ErrandBoy {
+	let name: String
+	init(name: String) {
+		self.name = name
+	}
+	func gotoChalk() {
+		print("\(self.name) go to chalk")
+	}
+
+}
+
+class Schoolboy: ErrandBoy {
+	let name: String
+	init(name: String) {
+		self.name = name
+	}
+	func gotoChalk() {
+		print("\(self.name) go to chalk")
+	}
+}
+
+//task 3
+struct Stack<Element> {
+    var items = [Element]()
+    mutating func push(_ item: Element) {
+        items.append(item)
+    }
+    mutating func pop() -> Element {
+        return items.removeLast()
+    }
+}

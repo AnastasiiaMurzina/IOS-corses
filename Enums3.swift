@@ -67,24 +67,22 @@ extension Book {
 	}
 }
 //task 4 
-
-protocol Comparable{
-	func lessOrMore(first: Point, second: Point) -> String
-}
-
 struct Point: Comparable {
 	var x: Double
 	var y: Double
-	func lessOrMore(first: Point, second: Point) -> String {
-		if ((first.x > second.x) && (first.y > second.y)) {
-			return "More"
-		} else {
-			if ((first.x < second.x) && (first.y < second.y)) {
-			return "Less"
-			} 
-			return "I cann't"
-		}
+}
+extension Point{
+	var abs: Double{
+		return pow(x*x + y*y, 0.5)
 	}
+}
+
+func < (lhs: Point, rhs: Point) -> Bool {
+    return lhs.abs < rhs.abs
+}
+
+func == (lhs: Point, rhs: Point) -> Bool {
+    return lhs.abs == rhs.abs
 }
 
 //task 5

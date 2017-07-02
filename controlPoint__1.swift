@@ -30,8 +30,9 @@ class BankAccount {
 					throw CreditCardError.insufficientFunds(coinsNeeded: money - self.balance)
 				}
 	}
-	func deposit() -> Double{
-		return self.balance
+	func deposit(someMoney: Double) {
+		self.balance += someMoney
+		print("You have put \(someMoney) in id \(self.id). Now it's \(self.balance)")
 	}
 }
 

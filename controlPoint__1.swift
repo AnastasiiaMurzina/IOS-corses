@@ -82,8 +82,10 @@ class Organization: Customs {
 }
 
 //task 3
+import Foundation
+
 protocol Transferable {
-	func transfer(fromID: Int, toID: Int, money: Double)
+	func transfer(sender: String, money: Double, bankAccount: BankAccount)
 }
 enum CreditCardError: Error {
     case insufficientFunds(coinsNeeded: Double)
@@ -126,8 +128,9 @@ class Customs: Transferable {
 		self.bankAccount = bankAccount
 		self.id = id
 	}
-	func transfer (fromID: Int, toID: Int, money: Double) {
-		// I need compare fromID with all exist bankAccount's IDs and then use withdraw - Is it necessary?????
+	func transfer (sender: String, money: Double, bankAccount: BankAccount) {
+		print("\(sender) have given to \(bankAccount) \(money)")
+		
 	}
 }
 
@@ -173,7 +176,8 @@ class Bank {
 		self.bankAccount = bankAccount
 	}
 	var delegate: Transferable?
-	func transfer (fromID: Int, toID: Int, money: Double) {
+	func transfer (sender: String, money: Double, bankAccount: BankAccount) {
+		print("\(sender) have given to \(bankAccount) \(money)")
 		
 	}
 	

@@ -1,6 +1,7 @@
-//task 1
 import Foundation
-
+protocol Transferable {
+	func transfer(fromID: Int, toID: Int, money: Double)
+}
 enum CreditCardError: Error {
     case insufficientFunds(coinsNeeded: Double)
 	case depositError
@@ -35,14 +36,16 @@ class BankAccount {
 	}
 }
 
-//task 2
-class Customs {
+class Customs: Transferable {
 	let id: Int
 	var bankAccount: BankAccount
 	init(id: Int, bankAccount: BankAccount){
 		self.bankAccount = bankAccount
 		self.id = id
-	}	
+	}
+	func transfer (fromID: Int, toID: Int, money: Double) {
+		// I need compare fromID with all exist bankAccount's IDs and then use withdraw - Is it necessary?????
+	}
 }
 
 class Physic: Customs {
@@ -81,4 +84,14 @@ class Organization: Customs {
 	deinit{}	
 }
 
-//task 3
+class Bank {
+	var bankAccount: BankAccount
+	init(bankAccount: BankAccount){
+		self.bankAccount = bankAccount
+	}
+	var delegate: Transferable?
+	func transfer (fromID: Int, toID: Int, money: Double) {
+		
+	}
+	
+}

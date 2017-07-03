@@ -85,7 +85,9 @@ class Organization: Customs {
 import Foundation
 
 protocol Transferable {
-	func transfer(sender: String, money: Double, bankAccount: BankAccount)
+	var id: Int { get set}
+	var bankAccount: BankAccount { get set }
+	func transfer(sender: Transferable, money: Double, bankAccount: BankAccount) throws
 }
 enum CreditCardError: Error {
     case insufficientFunds(coinsNeeded: Double)
@@ -102,7 +104,7 @@ enum CreditCardError: Error {
 }
 
 class BankAccount {
-	let id: Int
+	var id: Int
 	var balance: Double
 	
 	
@@ -122,15 +124,16 @@ class BankAccount {
 }
 
 class Customs: Transferable {
-	let id: Int
+	var id: Int
 	var bankAccount: BankAccount
 	init(id: Int, bankAccount: BankAccount){
 		self.bankAccount = bankAccount
 		self.id = id
 	}
-	func transfer (sender: String, money: Double, bankAccount: BankAccount) {
+	func transfer (sender: Transferable, money: Double, bankAccount: BankAccount)  throws {
+		try sender.bankAccount.withdraw(money: money)
+		bankAccount.deposit(someMoney: money)
 		print("\(sender) have given to \(bankAccount) \(money)")
-		
 	}
 }
 
@@ -176,9 +179,10 @@ class Bank {
 		self.bankAccount = bankAccount
 	}
 	var delegate: Transferable?
-	func transfer (sender: String, money: Double, bankAccount: BankAccount) {
+	func transfer (sender: Transferable, money: Double, bankAccount: BankAccount)  throws {
+		try sender.bankAccount.withdraw(money: money)
+		bankAccount.deposit(someMoney: money)
 		print("\(sender) have given to \(bankAccount) \(money)")
-		
 	}
 	
 }
